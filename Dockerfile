@@ -7,6 +7,8 @@ ENV TZ "Asia/Shanghai"
 RUN apk update \
     && apk add --no-cache \
     bash \
+    curl \
+    git \
     tzdata \
     && rm -rf /var/cache/apk/*
 
