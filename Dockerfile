@@ -7,13 +7,6 @@ ENV TZ "Asia/Shanghai"
 # Since from alpine v3.3, apk --no-cache will run apk update first,
 # and rm -rf /var/cache/apk/* finally.
 RUN apk add --no-cache \
-    autoconf \
-    ca-certificates \
-    curl \
-    git \
-    gcc \
-    g++ \
-    glib \
     tzdata \
     && rm -rf /var/cache/apk/*
 
