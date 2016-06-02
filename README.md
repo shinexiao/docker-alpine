@@ -1,1 +1,2 @@
-Docker alpine image with default timezone "Asia/Shanghai"
+Docker alpine image with default timezone "Asia/Shanghai".
+And has autoconf, gcc, g++, glib, make...
