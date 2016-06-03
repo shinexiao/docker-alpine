@@ -7,9 +7,9 @@ ENV TZ "Asia/Shanghai"
 # Install packages
 # Since from alpine v3.3, apk --no-cache will run apk update first,
 # and rm -rf /var/cache/apk/* finally.
-RUN ALPINE_REPO_VERSION=$(grep -Eo /etc/apk/reposistories | uniq) \
-    && echo "http://mirrors.ustc.edu.cn/alpine/v${ALPINE_REPO_VERSION}/main" > /etc/apk/repositories \
-    && echo "http://mirrors.ustc.edu.cn/alpine/v${ALPINE_REPO_VERSION}/community" >> /etc/apk/repositories \
+RUN export REPO_VERSION=$(grep -Eo /etc/apk/reposistories | uniq) \
+    && echo "http://mirrors.ustc.edu.cn/alpine/v${REPO_VERSION}/main" > /etc/apk/repositories \
+    && echo "http://mirrors.ustc.edu.cn/alpine/v${REPO_VERSION}/community" >> /etc/apk/repositories \
     && apk add --no-cache \
       tzdata \
     && rm -rf /var/cache/apk/*
