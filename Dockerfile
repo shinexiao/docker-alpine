@@ -3,11 +3,15 @@ MAINTAINER leky <lekyzsj@gmail.com>
 
 ENV TZ "Asia/Shanghai"
 
+# Official alpine mirrors: http://rsync.alpinelinux.org/alpine/MIRRORS.txt
 # Install packages
 # Since from alpine v3.3, apk --no-cache will run apk update first,
 # and rm -rf /var/cache/apk/* finally.
-RUN apk add --no-cache \
-    tzdata \
+RUN ALPINE_REPO_VERSION=$(grep -Eo /etc/apk/reposistories | uniq) \
+    && echo "http://mirrors.ustc.edu.cn/alpine/v${ALPINE_REPO_VERSION}/main" > /etc/apk/reposistories \
+    && echo "http://mirrors.ustc.edu.cn/alpine/v${ALPINE_REPO_VERSION}/community" >> /etc/apk/reposistories \
+    && apk add --no-cache \
+      tzdata \
     && rm -rf /var/cache/apk/*
 
 # Set default timezone
