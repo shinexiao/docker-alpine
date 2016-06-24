@@ -12,7 +12,6 @@ RUN REPO_VERSION="$(grep -Eo '\d+(.\d+)?' /etc/apk/repositories | uniq)" \
     && echo "http://mirrors.ustc.edu.cn/alpine/v${REPO_VERSION}/community" >> /etc/apk/repositories \
     && apk add --no-cache \
       tzdata \
+    # Set default timezone
+    && ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone \
     && rm -rf /var/cache/apk/*
-
-# Set default timezone
-RUN ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
